@@ -1,0 +1,59 @@
+html, body, div, label{
+  margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+
+body {
+  text-align: center;
+}
+
+.opening-modal{
+  /*change to flex to see*/
+  display: none;
+  flex-direction: column;
+  position: absolute;
+  justify-content: space-around;
+  top: 20%;
+  left: 33%;
+  height: auto;
+  width: 33%;
+  background-color: white;
+  text-align: center;
+  border: 2px solid black;
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+
+.row{
+  display: inline-block;
+}
+
+.square{
+  height: 25px;
+  width: 25px;
+}
+
+.square:active{
+  background-image: url(http://i.imgur.com/bGT8xGEb.jpg)
+}
+
+.unexplored {
+  background-image: url(http://i.imgur.com/HM1e3Tbb.jpg);
+}
+
+.bomb {
+  background-image: url(http://i.imgur.com/UFmXprFb.jpg)
+}
+
+
+
+
+
+/*label {
+  display: flex;
+  flex-direction : column;
+}*/

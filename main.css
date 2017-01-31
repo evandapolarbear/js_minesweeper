@@ -33,8 +33,8 @@ body {
 }
 
 .square{
-  height: 25px;
-  width: 25px;
+  height: 100px;
+  width: 100px;
 }
 
 .square:active{
@@ -49,8 +49,58 @@ body {
   background-image: url(http://i.imgur.com/UFmXprFb.jpg)
 }
 
+.one {
+  background-image: url(http://i.imgur.com/bM8oExob.jpg);
+}
 
+.two {
+  background-image: url(http://i.imgur.com/bQKSbqYb.jpg);
+  max-width:100%;
+  max-height:100%;
+  object-fit: contain;
+}
 
+.three {
+  background-image: url(http://i.imgur.com/5jNcEeVb.jpg);
+  max-width:100%;
+  max-height:100%;
+  object-fit: contain;
+}
+
+.four {
+  background-image: url(http://i.imgur.com/BnxjHgHb.jpg);
+  max-width:100%;
+  max-height:100%;
+  object-fit: contain;
+}
+
+.five {
+  background-image: url(http://i.imgur.com/RaFrMYcb.jpg);
+  max-width:100%;
+  max-height:100%;
+  object-fit: contain;
+}
+
+.six {
+  background-image: url(http://i.imgur.com/GlwQOy0b.jpg);
+  max-width:100%;
+  max-height:100%;
+  object-fit: contain;
+}
+
+.seven {
+  background-image: url(http://i.imgur.com/8ngsVa8b.jpg);
+  max-width:100%;
+  max-height:100%;
+  object-fit: contain;
+}
+
+.eight {
+  background-image: url(http://i.imgur.com/lJ8P1wab.jpg);
+  max-width:100%;
+  max-height:100%;
+  object-fit: contain;
+}
 
 
 /*label {

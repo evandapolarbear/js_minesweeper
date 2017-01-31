@@ -21,8 +21,11 @@ var icons = {
 let GAME_VARS = {
   xAxis: 6,
   yAxis: 6,
-  bombs: 10,
-  board: []
+  bombs: 3,
+  board: [],
+  directions: [[-1, -1], [-1, 0], [-1, 1],
+               [0, -1], [0, 1],
+               [1, -1], [1, 0], [1, 1]]
 };
 
 //set board to have bombs
@@ -60,8 +63,7 @@ function buildBoardDom(){
       let square = document.createElement("div");
       square.classList.add("square");
       square.classList.add("unexplored");
-      square.classList.add(i);
-      square.classList.add(j);
+      square.setAttribute("id", i + "-" + j);
 
       square = addSquareListners(square);
 
@@ -73,8 +75,8 @@ function buildBoardDom(){
 }
 
 function addSquareListners(dom){
-  const x = dom.classList[2];
-  const y = dom.classList[3];
+  const x = dom.id[0];
+  const y = dom.id[2];
 
   dom.addEventListener("click", e => {
     dom.classList.remove("unexplored");
@@ -83,7 +85,7 @@ function addSquareListners(dom){
       dom.classList.add("bomb");
       endGame();
     } else {
-      revealSquares(dom, x, y)
+      revealSquares(dom, x, y);
     }
   });
 
@@ -94,32 +96,42 @@ function endGame() {
   console.log("Game Over");
 }
 
-function revealSquares(dom, x, y) {
+function countBombs(dom, x, y) {
   let bombsNear = 0;
-  const directions = [[-1, -1], [-1, 0], [-1, 1],
-                      [0, -1], [0, 1],
-                      [1, -1], [1, 0], [1, 1]];
 
   //Counts Number of nearby Bombs
-  directions.forEach(neighbor => {
-    let newX = Number(x) + neighbor[0];
-    let newY = Number(y) + neighbor[1];
+  for (let i = 0; i < GAME_VARS.directions.length; i++){
+    let newX = Number(x) + GAME_VARS.directions[i][0];
+    let newY = Number(y) + GAME_VARS.directions[i][1];
 
-    if(GAME_VARS.board[newX][newY] === 1) {
+    //FIX issue with final x row unknown
+    if (!GAME_VARS.board[newX][newY]){
+      continue;
+    } else if(GAME_VARS.board[newX][newY] === 1) {
       bombsNear++;
     }
-  });
+  }
+  return bombsNear;
+}
 
-  console.log(bombsNear);
+function revealSquares(dom, x, y){
+  let numBombs = countBombs(dom, x, y);
+  const bombClasses = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'];
 
-  //If Nearby Bombs === 0 recures through neighbors and reveal cells else, else add appropriate num class
-  // if(bombsNear === 0) {
-  //   directions.forEach(neighbor => {
-  //     let newX = x + neighbor[0];
-  //     let newY = y + neighbor[1];
-  //
-  //   });
-  // }
+  if (numBombs === 0) {
+    for (let i = 0; i < GAME_VARS.directions.length; i++) {
+      let newX = Number(x) + GAME_VARS.directions[i][0];
+      let newY = Number(y) + GAME_VARS.directions[i][1];
+
+      let newDom = document.getElementById(newX+'-'+newY)
+
+      console.log(newDom);
+      console.log(newY);
+      console.log(newX);
+      revealSquares(newDom, newX, newY)
+    }
+  }
+  dom.classList.add(bombClasses[numBombs]);
 }
 
 

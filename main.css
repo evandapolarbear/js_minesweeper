@@ -41,16 +41,16 @@ body {
   width: 100px;
 }
 
-.square:active{
-  background-image: url(http://i.imgur.com/bGT8xGEb.jpg)
-}
-
 .unexplored {
   background-image: url(http://i.imgur.com/HM1e3Tbb.jpg);
 }
 
 .bomb {
   background-image: url(http://i.imgur.com/UFmXprFb.jpg)
+}
+
+.zero {
+  background-image: url(http://i.imgur.com/Flqdqi1b.jpg);
 }
 
 .one {

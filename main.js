@@ -100,7 +100,7 @@ function endGame() {
 
 function countBombs(dom, x, y) {
   let bombsNear = 0;
-  dom.classList.remove('unexplored');
+
   //Counts Number of nearby Bombs
   for (let i = 0; i < GAME_VARS.directions.length; i++){
     let newX = Number(x) + GAME_VARS.directions[i][0];
@@ -117,6 +117,7 @@ function countBombs(dom, x, y) {
 function revealSquares(dom, x, y){
   let numBombs = countBombs(dom, x, y);
   const bombClasses = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'];
+  dom.classList.remove('unexplored');
 
   if (numBombs === 0) {
     for (let i = 0; i < GAME_VARS.directions.length; i++) {

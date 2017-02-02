@@ -19,9 +19,9 @@ var icons = {
 };
 
 let GAME_VARS = {
-  xAxis: 6,
-  yAxis: 6,
-  bombs: 3,
+  xAxis: 15,
+  yAxis: 15,
+  bombs: 15,
   board: [],
   directions: [[-1, -1], [-1, 0], [-1, 1],
                [0, -1], [0, 1],
@@ -96,18 +96,18 @@ function endGame() {
   console.log("Game Over");
 }
 
+
+
 function countBombs(dom, x, y) {
   let bombsNear = 0;
-
+  dom.classList.remove('unexplored');
   //Counts Number of nearby Bombs
   for (let i = 0; i < GAME_VARS.directions.length; i++){
     let newX = Number(x) + GAME_VARS.directions[i][0];
     let newY = Number(y) + GAME_VARS.directions[i][1];
 
     //FIX issue with final x row unknown
-    if (!GAME_VARS.board[newX][newY]){
-      continue;
-    } else if(GAME_VARS.board[newX][newY] === 1) {
+    if(squareExists(newX, newY) && GAME_VARS.board[newX][newY] === 1) {
       bombsNear++;
     }
   }
@@ -123,15 +123,18 @@ function revealSquares(dom, x, y){
       let newX = Number(x) + GAME_VARS.directions[i][0];
       let newY = Number(y) + GAME_VARS.directions[i][1];
 
-      let newDom = document.getElementById(newX+'-'+newY)
+      let newDom = document.getElementById(newX+'-'+newY);
 
-      console.log(newDom);
-      console.log(newY);
-      console.log(newX);
-      revealSquares(newDom, newX, newY)
+      if(squareExists(newX, newY) && newDom.classList.contains("unexplored")) {
+        revealSquares(newDom, newX, newY);
+      }
     }
   }
   dom.classList.add(bombClasses[numBombs]);
+}
+
+function squareExists(x, y) {
+  return (x >= 0 && y >= 0 && x < GAME_VARS.xAxis && y < GAME_VARS.yAxis);
 }
 
 

@@ -28,6 +28,10 @@ body {
   padding-bottom: 60px;
 }
 
+#board {
+  outline: 2px black solid;
+}
+
 .row{
   display: inline-block;
 }

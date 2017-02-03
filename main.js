@@ -102,7 +102,7 @@ function addSquareListners(dom){
     if(dom.classList.contains("unexplored")){
       dom.classList.remove("unexplored");
       dom.classList.add("flag");
-    } else if (dom.classList.contains("unexpored")){
+    } else if (!dom.classList.contains("unexpored")){
       dom.classList.remove("flag");
       dom.classList.add("unexplored");
     }
@@ -193,4 +193,5 @@ function setupBody(){
 
     setupBody();
   });
+
 })();

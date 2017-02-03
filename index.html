@@ -7,19 +7,24 @@
   <link rel="stylesheet" type="text/css" href="main.css">
 </head>
 <body>
-  <div class='opening-modal'>
+  <div class="show" id="opening-modal">
     <h2>
       Please Pick your board sizes
     </h2>
     <label>
       X-axis
-      <input type="text"/>
+      <input id="x-size" type="text"/>
     </label>
     <label>
       Y-axis
-      <input type="text"/>
+      <input id="y-size" type="text"/>
     </label>
-    <button class='size-submit'>Start!</button>
+    <button id="start-button" class='size-submit'>Start!</button>
+  </div>
+
+  <div class="hidden" id="closing-modal">
+    <h2>You Stepped on a Bomb</h2>
+    <button id="restart-button">Play Again!</h2>
   </div>
 
   <div id="board"></div>

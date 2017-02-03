@@ -11,9 +11,16 @@ body {
   text-align: center;
 }
 
-.opening-modal{
-  /*change to flex to see*/
+.hidden {
   display: none;
+}
+
+.show {
+  display: flex;
+}
+
+#opening-modal{
+  /*change to flex to see*/
   flex-direction: column;
   position: absolute;
   justify-content: space-around;
@@ -106,8 +113,6 @@ body {
   object-fit: contain;
 }
 
-
-/*label {
-  display: flex;
-  flex-direction : column;
-}*/
+.flag{
+  background-image: url(http://i.imgur.com/nLPvW15b.jpg);
+}

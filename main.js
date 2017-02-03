@@ -19,18 +19,21 @@ var icons = {
 };
 
 let GAME_VARS = {
-  xAxis: 15,
-  yAxis: 15,
-  bombs: 15,
+  xAxis: 50,
+  yAxis: 50,
+  bombs: 5,
   board: [],
   directions: [[-1, -1], [-1, 0], [-1, 1],
                [0, -1], [0, 1],
-               [1, -1], [1, 0], [1, 1]]
+               [1, -1], [1, 0], [1, 1]],
+  bombClasses: ['zero', 'one', 'two', 'three', 'four',
+                'five', 'six', 'seven', 'eight', 'nine']
 };
 
 //set board to have bombs
 function setupBoard() {
   let bombsPlaced = 0;
+  let test = [];
 
   for (let i = 0; i < GAME_VARS.xAxis; i++) {
     let row = [];
@@ -45,10 +48,12 @@ function setupBoard() {
     let yI = Math.floor(Math.random() * GAME_VARS.yAxis);
 
     if (GAME_VARS.board[xI][yI] === 0) {
+      test.push([xI, yI]);
       GAME_VARS.board[xI][yI] = 1;
       bombsPlaced++;
     }
   }
+  console.log(test);
 }
 
 //create board dom elemets
@@ -79,13 +84,27 @@ function addSquareListners(dom){
   const y = dom.id[2];
 
   dom.addEventListener("click", e => {
-    dom.classList.remove("unexplored");
+    if(dom.classList.contains("unexplored")){
+      dom.classList.remove("unexplored");
 
-    if(GAME_VARS.board[x][y] === 1){
-      dom.classList.add("bomb");
-      endGame();
-    } else {
-      revealSquares(dom, x, y);
+      if(GAME_VARS.board[x][y] === 1){
+        dom.classList.add("bomb");
+        endGame();
+      } else {
+        revealSquares(dom, x, y);
+      }
+    }
+  });
+
+  dom.addEventListener("contextmenu", e =>{
+    console.log(e);
+    e.preventDefault();
+    if(dom.classList.contains("unexplored")){
+      dom.classList.remove("unexplored");
+      dom.classList.add("flag");
+    } else if (dom.classList.contains("unexpored")){
+      dom.classList.remove("flag");
+      dom.classList.add("unexplored");
     }
   });
 
@@ -93,51 +112,85 @@ function addSquareListners(dom){
 }
 
 function endGame() {
-  console.log("Game Over");
+  document.getElementById("closing-modal").classList.remove("hidden");
 }
 
-
-
+//counts bombs nearby
 function countBombs(dom, x, y) {
   let bombsNear = 0;
 
-  //Counts Number of nearby Bombs
-  for (let i = 0; i < GAME_VARS.directions.length; i++){
-    let newX = Number(x) + GAME_VARS.directions[i][0];
-    let newY = Number(y) + GAME_VARS.directions[i][1];
-
-    //FIX issue with final x row unknown
-    if(squareExists(newX, newY) && GAME_VARS.board[newX][newY] === 1) {
+  forSurroundings(x, y,(newX, newY) => {
+    if (GAME_VARS.board[newX][newY] === 1){
       bombsNear++;
     }
-  }
+  });
+
   return bombsNear;
 }
 
+//adds a class to squares next to bombs and
+//recursively checks squares with no neighbor bombs
 function revealSquares(dom, x, y){
   let numBombs = countBombs(dom, x, y);
-  const bombClasses = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'];
+
   dom.classList.remove('unexplored');
 
   if (numBombs === 0) {
-    for (let i = 0; i < GAME_VARS.directions.length; i++) {
-      let newX = Number(x) + GAME_VARS.directions[i][0];
-      let newY = Number(y) + GAME_VARS.directions[i][1];
-
+    forSurroundings(x, y, (newX, newY) => {
       let newDom = document.getElementById(newX+'-'+newY);
-
-      if(squareExists(newX, newY) && newDom.classList.contains("unexplored")) {
+      if (newDom.classList.contains("unexplored")){
         revealSquares(newDom, newX, newY);
       }
-    }
+    });
   }
-  dom.classList.add(bombClasses[numBombs]);
+
+  dom.classList.add(GAME_VARS.bombClasses[numBombs]);
 }
 
+//function to make sure new pos exits on board
 function squareExists(x, y) {
   return (x >= 0 && y >= 0 && x < GAME_VARS.xAxis && y < GAME_VARS.yAxis);
 }
 
+//takes a cb and applies it to all existing surrounding squares
+function forSurroundings(x, y, cb){
+  for(var i = 0; i < GAME_VARS.directions.length; i++){
+    let newX = Number(x) + GAME_VARS.directions[i][0];
+    let newY = Number(y) + GAME_VARS.directions[i][1];
 
-setupBoard();
-buildBoardDom();
+    if(squareExists(newX, newY)){
+      cb(newX, newY);
+    }
+  }
+}
+
+function setupBody(){
+  document.getElementById("board").innerHTML = '';
+  setupBoard();
+  buildBoardDom();
+}
+
+//Iffy to set up everything
+(function (){
+  setupBoard();
+  buildBoardDom();
+
+  document.getElementById("restart-button").addEventListener("click", () =>{
+
+    setupBody();
+  });
+
+  document.getElementById("start-button").addEventListener("click", () =>{
+    var x = document.getElementById("x-size").value;
+    var y = document.getElementById("y-size").value;
+
+    GAME_VARS.xAxis = Number(x);
+    GAME_VARS.yAxis = Number(y);
+
+    var modal = document.getElementById("opening-modal");
+    modal.classList.remove("show");
+    modal.classList.add("hidden");
+
+    setupBody();
+  });
+})();

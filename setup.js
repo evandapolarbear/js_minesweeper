@@ -2,6 +2,9 @@
 function setupBoard() {
   let bombsPlaced = 0;
 
+  GAME_VARS.bombIdxs = [];
+  GAME_VARS.board = [];
+
   for (let i = 0; i < GAME_VARS.xAxis; i++) {
     let row = [];
     for (let j = 0; j < GAME_VARS.yAxis; j++) {

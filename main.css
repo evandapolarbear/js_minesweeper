@@ -51,10 +51,14 @@ body {
   width: 100px;
 }
 
-.unexpored, .bomb, .zero, .one, .two, .three, .four, .five, .six, .seven, .eight, .flag {
+.unexpored, .bomb, .zero, .one, .two, .three, .four, .five, .six, .seven, .eight, .flag, .exposed {
   background-size: 100% 100%;
-  background-size: fit;
 }
+
+.exposed {
+  background-image: url(http://i.imgur.com/UFmXprFb.jpg);
+}
+
 .unexplored {
   background-image: url(http://i.imgur.com/HM1e3Tbb.jpg);
 }
@@ -73,51 +77,30 @@ body {
 
 .two {
   background-image: url(http://i.imgur.com/bQKSbqYb.jpg);
-  max-width:100%;
-  max-height:100%;
-  object-fit: contain;
 }
 
 .three {
   background-image: url(http://i.imgur.com/5jNcEeVb.jpg);
-  max-width:100%;
-  max-height:100%;
-  object-fit: contain;
 }
 
 .four {
   background-image: url(http://i.imgur.com/BnxjHgHb.jpg);
-  max-width:100%;
-  max-height:100%;
-  object-fit: contain;
 }
 
 .five {
   background-image: url(http://i.imgur.com/RaFrMYcb.jpg);
-  max-width:100%;
-  max-height:100%;
-  object-fit: contain;
 }
 
 .six {
   background-image: url(http://i.imgur.com/GlwQOy0b.jpg);
-  max-width:100%;
-  max-height:100%;
-  object-fit: contain;
 }
 
 .seven {
   background-image: url(http://i.imgur.com/8ngsVa8b.jpg);
-  max-width:100%;
-  max-height:100%;
-  object-fit: contain;
 }
 
 .eight {
   background-image: url(http://i.imgur.com/lJ8P1wab.jpg);
-  max-width:100%;
-  max-height:100%;
-  object-fit: contain;
 }
 
 .flag{

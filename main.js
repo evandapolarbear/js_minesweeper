@@ -90,35 +90,28 @@ function setupBody(){
   buildBoardDom();
 }
 
-function getAllBombs(){
-  console.log("getting bombs");
-  for (var x = 0; x < GAME_VARS.board; x++){
-    for (var y = 0; y < GAME_VARS.board; y++){
-
-      console.log(GAME_VARS.board[x][y]);
-      // if (GAME_VARS[x][y] === 1){
-      //   GAME_VARS.bombIdxs.push([x, y]);
-      // }
-    }
-  }
-}
-
 function checkForEnd(){
   var bool = GAME_VARS.bombIdxs.every(ele => {
     var x = ele[0];
     var y = ele[1];
-    console.log(x);
-    console.log(y);
-    console.log(x + "-" + y);
 
     var domEL = document.getElementById(x + '-' + y);
-    console.log(domEL);
 
-
+    if(domEL.classList.contains("flag")){
+      return true;
+    }
   });
 
-  if (bool){
-    return "game won";
+  if (bool) {
+    document.getElementById("closing-modal").classList.remove("hidden");
+
+    GAME_VARS.bombIdxs.forEach(ele => {
+      var x = ele[0];
+      var y = ele[1];
+      var domEL = document.getElementById(x + '-' + y);
+      domEl.classList.remove("flag");
+      domEl.classList.add("exposed");
+    });
   }
 }
 
@@ -127,11 +120,8 @@ function checkForEnd(){
   setupBoard();
   buildBoardDom();
 
-  // setInterval(checkForEnd, 10);
-
   document.getElementById("restart-button").addEventListener("click", () =>{
-    document.getElementById('closing-modal').classList.add("hidden");
-    setupBody();
+    window.location.reload();
   });
 
   document.getElementById("start-button").addEventListener("click", () =>{
@@ -147,4 +137,6 @@ function checkForEnd(){
 
     setupBody();
   });
+
+
 })();

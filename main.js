@@ -98,12 +98,6 @@ function forSurroundings(x, y, cb){
   }
 }
 
-function setupBody(){
-  document.getElementById("board").innerHTML = '';
-  setupBoard();
-  buildBoardDom();
-}
-
 function checkForEnd(){
   var bool = GAME_VARS.bombIdxs.every(ele => {
     var x = ele[0];

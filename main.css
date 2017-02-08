@@ -19,12 +19,6 @@ button {
   overflow: hidden;
 }
 
-.diff {
-  display: flex;
-  margin: 20px auto;
-  width: 80%;
-}
-
 label{
   margin-top: 5px;
   margin-bottom: 5px;

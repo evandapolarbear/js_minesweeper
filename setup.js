@@ -1,3 +1,9 @@
+function setupBody(){
+  document.getElementById("board").innerHTML = '';
+  setupBoard();
+  buildBoardDom();
+}
+
 //set board to have bombs
 function setupBoard() {
   let bombsPlaced = 0;
@@ -92,7 +98,7 @@ function parseAxis(){
   modal.classList.add("hidden");
 }
 
-function parseRadio() {
+function setBombs() {
   var x = GAME_VARS.xAxis;
   var y = GAME_VARS.yAxis;
 
@@ -103,18 +109,10 @@ function parseRadio() {
   }
 
   GAME_VARS.bombs = numBombs;
-  // var buttons = document.getElementsByName("difficulty");
-  //
-  // for(var i = 0; i < buttons.length; i++){
-  //   if(buttons[i].checked){
-  //     alert(buttons[i].value);
-  //   }
-  //   break;
-  // }
 }
 
 function combineSetup() {
   parseAxis();
-  parseRadio();
+  setBombs();
   setupBody();
 }

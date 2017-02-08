@@ -126,13 +126,17 @@ function checkForEnd(){
   setupBoard();
   buildBoardDom();
 
+  //handle click on restart button at end of game
   document.getElementById("restart-button").addEventListener("click", () =>{
     window.location.reload();
   });
 
+
+  //handle start button click and set up
   document.getElementById("start-button").addEventListener("click", () =>{
     var x = document.getElementById("x-size").value;
     var y = document.getElementById("y-size").value;
+    // var diff = document.getElementById()
 
     GAME_VARS.xAxis = Number(x);
     GAME_VARS.yAxis = Number(y);
@@ -144,6 +148,7 @@ function checkForEnd(){
     setupBody();
   });
 
+  //check for all bombs flagged
   setInterval(checkForEnd, 10);
 
 })();

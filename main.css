@@ -14,10 +14,20 @@ button {
   margin: 20px auto
 }
 
+.stop-scrolling {
+  height: 100%;
+  overflow: hidden;
+}
+
 .diff {
   display: flex;
   margin: 20px auto;
   width: 80%;
+}
+
+label{
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
 input[type=radio] {

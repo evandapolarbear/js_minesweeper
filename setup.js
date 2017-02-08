@@ -79,3 +79,42 @@ function addSquareListners(dom){
 
   return dom;
 }
+
+function parseAxis(){
+  var x = document.getElementById("x-size").value;
+  var y = document.getElementById("y-size").value;
+
+  GAME_VARS.xAxis = Number(x);
+  GAME_VARS.yAxis = Number(y);
+
+  var modal = document.getElementById("opening-modal");
+  modal.classList.remove("show");
+  modal.classList.add("hidden");
+}
+
+function parseRadio() {
+  var x = GAME_VARS.xAxis;
+  var y = GAME_VARS.yAxis;
+
+  var numBombs = Math.round((x * y) / 15)
+
+  if (numBombs < 6){
+    numBombs = 6;
+  }
+
+  GAME_VARS.bombs = numBombs;
+  // var buttons = document.getElementsByName("difficulty");
+  //
+  // for(var i = 0; i < buttons.length; i++){
+  //   if(buttons[i].checked){
+  //     alert(buttons[i].value);
+  //   }
+  //   break;
+  // }
+}
+
+function combineSetup() {
+  parseAxis();
+  parseRadio();
+  setupBody();
+}

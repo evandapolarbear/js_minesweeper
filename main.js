@@ -133,20 +133,7 @@ function checkForEnd(){
 
 
   //handle start button click and set up
-  document.getElementById("start-button").addEventListener("click", () =>{
-    var x = document.getElementById("x-size").value;
-    var y = document.getElementById("y-size").value;
-    // var diff = document.getElementById()
-
-    GAME_VARS.xAxis = Number(x);
-    GAME_VARS.yAxis = Number(y);
-
-    var modal = document.getElementById("opening-modal");
-    modal.classList.remove("show");
-    modal.classList.add("hidden");
-
-    setupBody();
-  });
+  document.getElementById("start-button").addEventListener("click", combineSetup);
 
   //check for all bombs flagged
   setInterval(checkForEnd, 10);

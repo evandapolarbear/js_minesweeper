@@ -51,6 +51,10 @@ body {
   width: 100px;
 }
 
+.unexpored, .bomb, .zero, .one, .two, .three, .four, .five, .six, .seven, .eight, .flag {
+  background-size: 100% 100%;
+  background-size: fit;
+}
 .unexplored {
   background-image: url(http://i.imgur.com/HM1e3Tbb.jpg);
 }

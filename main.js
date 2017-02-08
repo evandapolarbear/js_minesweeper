@@ -91,20 +91,35 @@ function setupBody(){
 }
 
 function getAllBombs(){
+  console.log("getting bombs");
   for (var x = 0; x < GAME_VARS.board; x++){
     for (var y = 0; y < GAME_VARS.board; y++){
-      if(GAME_VARS[x][y] === 1){
-        GAME_VARS.bombIdxs.push([x, y])
-      }
+
+      console.log(GAME_VARS.board[x][y]);
+      // if (GAME_VARS[x][y] === 1){
+      //   GAME_VARS.bombIdxs.push([x, y]);
+      // }
     }
   }
 }
 
 function checkForEnd(){
-  GAME_VARS.bombIdxs.every(ele => {
+  var bool = GAME_VARS.bombIdxs.every(ele => {
     var x = ele[0];
     var y = ele[1];
+    console.log(x);
+    console.log(y);
+    console.log(x + "-" + y);
+
+    var domEL = document.getElementById(x + '-' + y);
+    console.log(domEL);
+
+
   });
+
+  if (bool){
+    return "game won";
+  }
 }
 
 //Iffy to set up everything
@@ -112,7 +127,7 @@ function checkForEnd(){
   setupBoard();
   buildBoardDom();
 
-  getAllBombs();
+  // setInterval(checkForEnd, 10);
 
   document.getElementById("restart-button").addEventListener("click", () =>{
     document.getElementById('closing-modal').classList.add("hidden");

@@ -1,7 +1,6 @@
 //set board to have bombs
 function setupBoard() {
   let bombsPlaced = 0;
-  let test = [];
 
   for (let i = 0; i < GAME_VARS.xAxis; i++) {
     let row = [];
@@ -16,13 +15,13 @@ function setupBoard() {
     let yI = Math.floor(Math.random() * GAME_VARS.yAxis);
 
     if (GAME_VARS.board[xI][yI] === 0) {
-      test.push([xI, yI]);
+      GAME_VARS.bombIdxs.push([xI, yI]);
       GAME_VARS.board[xI][yI] = 1;
       bombsPlaced++;
     }
   }
-  console.log(test);
 }
+
 
 //create board dom elemets
 function buildBoardDom(){
@@ -65,7 +64,6 @@ function addSquareListners(dom){
   });
 
   dom.addEventListener("contextmenu", e =>{
-    console.log(e);
     e.preventDefault();
     if(dom.classList.contains("unexplored")){
       dom.classList.remove("unexplored");

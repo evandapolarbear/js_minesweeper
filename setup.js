@@ -59,7 +59,7 @@ function addSquareListners(dom){
 
       if(GAME_VARS.board[x][y] === 1){
         dom.classList.add("bomb");
-        endGame();
+        endGameLoss();
       } else {
         revealSquares(dom, x, y);
       }

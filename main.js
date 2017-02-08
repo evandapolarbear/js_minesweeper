@@ -31,8 +31,22 @@ let GAME_VARS = {
                 'five', 'six', 'seven', 'eight', 'nine']
 };
 
-function endGame() {
+function endGameLoss() {
   document.getElementById("closing-modal").classList.remove("hidden");
+}
+
+function endGameWin(){
+  GAME_VARS.bombIdxs.forEach(ele => {
+    var x = ele[0];
+    var y = ele[1];
+    var domELe = document.getElementById(x + '-' + y);
+
+    domELe.classList.remove("flag");
+    domELe.classList.add("exposed");
+
+    document.getElementById("close-message").innerHTML = "You Won!";
+    document.getElementById("closing-modal").classList.remove("hidden");
+  });
 }
 
 //counts bombs nearby
@@ -103,15 +117,7 @@ function checkForEnd(){
   });
 
   if (bool) {
-    document.getElementById("closing-modal").classList.remove("hidden");
-
-    GAME_VARS.bombIdxs.forEach(ele => {
-      var x = ele[0];
-      var y = ele[1];
-      var domEL = document.getElementById(x + '-' + y);
-      domEl.classList.remove("flag");
-      domEl.classList.add("exposed");
-    });
+    endGameWin();
   }
 }
 
@@ -138,5 +144,6 @@ function checkForEnd(){
     setupBody();
   });
 
+  setInterval(checkForEnd, 10);
 
 })();

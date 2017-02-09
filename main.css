@@ -29,13 +29,7 @@ button {
   overflow: hidden;
 }
 
-/*label{
-  margin-top: 5px;
-  margin-bottom: 5px;
-}*/
-
 body {
-  /*height: 100%;*/
   text-align: center;
 }
 
@@ -43,6 +37,7 @@ body {
   margin-top: 7%;
   margin-bottom: 20%;
 }
+
 .hidden {
   display: none;
 }
@@ -52,7 +47,6 @@ body {
 }
 
 #opening-modal , #closing-modal{
-  /*change to flex to see*/
   flex-direction: column;
   position: absolute;
   justify-content: space-around;

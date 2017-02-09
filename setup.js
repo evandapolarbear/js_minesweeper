@@ -1,15 +1,5 @@
-function setupBody(){
-  let board = document.getElementById("board");
-
-  board.innerHTML = '';
-
-  board.classList.add("board-margin");
-
-  setupBoard();
-  buildBoardDom();
-}
-
-//set board to have bombs
+//create internal board and
+//set it to have bombs
 function setupBoard() {
   let bombsPlaced = 0;
 
@@ -38,6 +28,7 @@ function setupBoard() {
 
 
 //create board dom elemets
+//and add listeners
 function buildBoardDom(){
   let domBoard = document.getElementById('board');
 
@@ -60,6 +51,8 @@ function buildBoardDom(){
   }
 }
 
+//adds click and right click
+//listeners to all squares
 function addSquareListners(dom){
   const x = dom.id[0];
   const y = dom.id[2];
@@ -91,13 +84,8 @@ function addSquareListners(dom){
   return dom;
 }
 
-function parseAxis(){
-  // var x = document.getElementById("x-size").value;
-  // var y = document.getElementById("y-size").value;
-  //
-  // GAME_VARS.xAxis = Number(x);
-  // GAME_VARS.yAxis = Number(y);
 
+function parseAxis(){
   GAME_VARS.xAxis = 10;
   GAME_VARS.yAxis = 10;
 
@@ -120,10 +108,29 @@ function setBombs() {
   GAME_VARS.bombs = 10;
 }
 
+//call back that is called when
+//player clicks start button
+//resets variables, and hides modal
 function combineSetup() {
-  console.log("setup time");
+  GAME_VARS.xAxis = 10;
+  GAME_VARS.yAxis = 10;
+  GAME_VARS.bombs = 10;
 
-  parseAxis();
-  setBombs();
-  setupBody();
+  let board = document.getElementById("board");
+  var modal = document.getElementById("opening-modal");
+
+  board.innerHTML = '';
+  board.classList.add("board-margin");
+  modal.classList.remove("show");
+  modal.classList.add("hidden");
+
+  setupBoard();
+  buildBoardDom();
+}
+
+//change body for intro body to playable body;
+function setupBody(){
+
+
+
 }

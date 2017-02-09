@@ -98,6 +98,8 @@ function forSurroundings(x, y, cb){
   }
 }
 
+
+//Checks to see if all bombs flagged
 function checkForEnd(){
   var bool = GAME_VARS.bombIdxs.every(ele => {
     var x = ele[0];
@@ -115,10 +117,6 @@ function checkForEnd(){
   }
 }
 
-
-
-
-
 //Iffy to set up everything
 (function (){
   buildBoardDom();
@@ -132,7 +130,7 @@ function checkForEnd(){
   //handle start button click and set up
   document.getElementById("start-button").addEventListener("click", combineSetup);
 
-  //check for all bombs flagged
+  //check for all bombs flagged on interval
   setInterval(checkForEnd, 10);
 
 })();

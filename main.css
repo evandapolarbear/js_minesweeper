@@ -7,11 +7,21 @@ html, body, div, label{
 	vertical-align: baseline;
 }
 
+body, #opening-modal, #closing-modal {
+  background: -moz-linear-gradient(349deg, rgba(249,255,161,1) 0%, rgba(0,128,128,1) 100%); /* ff3.6+ */
+  background: -webkit-gradient(linear, left top, right top, color-stop(0%, rgba(249,255,161,1)), color-stop(100%, rgba(0,128,128,1))); /* safari4+,chrome */
+  background: -webkit-linear-gradient(349deg, rgba(249,255,161,1) 0%, rgba(0,128,128,1) 100%); /* safari5.1+,chrome10+ */
+  background: -o-linear-gradient(349deg, rgba(249,255,161,1) 0%, rgba(0,128,128,1) 100%); /* opera 11.10+ */
+  background: -ms-linear-gradient(349deg, rgba(249,255,161,1) 0%, rgba(0,128,128,1) 100%); /* ie10+ */
+  background: linear-gradient(101deg, rgba(249,255,161,1) 0%, rgba(0,128,128,1) 100%); /* w3c */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#F9FFA1', endColorstr='#008080',GradientType=1 ); /* ie6-9 */s
+}
+
 button {
-  width: 300px;
-  height: 70px;
+  width: 150px;
+  height: 40px;
   background-color: white;
-  margin: 20px auto
+  margin: 10px auto
 }
 
 .stop-scrolling {
@@ -19,21 +29,20 @@ button {
   overflow: hidden;
 }
 
-label{
+/*label{
   margin-top: 5px;
   margin-bottom: 5px;
-}
-
-input[type=radio] {
-  border: 0px;
-  width: 100%;
-  height: 1.5em;
-}
+}*/
 
 body {
+  /*height: 100%;*/
   text-align: center;
 }
 
+.board-margin{
+  margin-top: 7%;
+  margin-bottom: 20%;
+}
 .hidden {
   display: none;
 }
@@ -54,13 +63,9 @@ body {
   background-color: white;
   text-align: center;
   border: 2px solid black;
-  padding-top: 60px;
-  padding-bottom: 60px;
-  font-size: 40px;
-}
-
-#board {
-  outline: 2px black solid;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  font-size: 24px;
 }
 
 .row{
@@ -68,8 +73,8 @@ body {
 }
 
 .square{
-  height: 100px;
-  width: 100px;
+  height: 50px;
+  width: 50px;
 }
 
 .unexpored, .bomb, .zero, .one, .two, .three, .four, .five, .six, .seven, .eight, .flag, .exposed {

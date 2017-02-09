@@ -19,8 +19,8 @@ var icons = {
 };
 
 let GAME_VARS = {
-  xAxis: 50,
-  yAxis: 50,
+  xAxis: 100,
+  yAxis: 100,
   bombs: 5,
   board: [],
   bombIdxs: [],
@@ -58,7 +58,6 @@ function countBombs(dom, x, y) {
       bombsNear++;
     }
   });
-
   return bombsNear;
 }
 
@@ -67,6 +66,7 @@ function countBombs(dom, x, y) {
 function revealSquares(dom, x, y){
   let numBombs = countBombs(dom, x, y);
 
+  console.log(numBombs);
   dom.classList.remove('unexplored');
 
   if (numBombs === 0) {
@@ -115,9 +115,12 @@ function checkForEnd(){
   }
 }
 
+
+
+
+
 //Iffy to set up everything
 (function (){
-  setupBoard();
   buildBoardDom();
 
   //handle click on restart button at end of game

@@ -1,5 +1,10 @@
 function setupBody(){
-  document.getElementById("board").innerHTML = '';
+  let board = document.getElementById("board");
+
+  board.innerHTML = '';
+
+  board.classList.add("board-margin");
+
   setupBoard();
   buildBoardDom();
 }
@@ -87,11 +92,14 @@ function addSquareListners(dom){
 }
 
 function parseAxis(){
-  var x = document.getElementById("x-size").value;
-  var y = document.getElementById("y-size").value;
+  // var x = document.getElementById("x-size").value;
+  // var y = document.getElementById("y-size").value;
+  //
+  // GAME_VARS.xAxis = Number(x);
+  // GAME_VARS.yAxis = Number(y);
 
-  GAME_VARS.xAxis = Number(x);
-  GAME_VARS.yAxis = Number(y);
+  GAME_VARS.xAxis = 10;
+  GAME_VARS.yAxis = 10;
 
   var modal = document.getElementById("opening-modal");
   modal.classList.remove("show");
@@ -99,19 +107,22 @@ function parseAxis(){
 }
 
 function setBombs() {
-  var x = GAME_VARS.xAxis;
-  var y = GAME_VARS.yAxis;
-
-  var numBombs = Math.round((x * y) / 15)
-
-  if (numBombs < 6){
-    numBombs = 6;
-  }
-
-  GAME_VARS.bombs = numBombs;
+  // var x = GAME_VARS.xAxis;
+  // var y = GAME_VARS.yAxis;
+  //
+  // var numBombs = Math.round((x * y) / 15)
+  //
+  // if (numBombs < 6){
+  //   numBombs = 6;
+  // }
+  //
+  // GAME_VARS.bombs = numBombs;
+  GAME_VARS.bombs = 10;
 }
 
 function combineSetup() {
+  console.log("setup time");
+
   parseAxis();
   setBombs();
   setupBody();
